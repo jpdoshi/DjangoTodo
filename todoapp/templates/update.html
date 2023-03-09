@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quadlite@1.0.0/quadlite.min.css">
+	<title>Update Task - {{ todo_id }}</title>
+</head>
+<body>
+	<div class="cont-s m-h-auto m-t-5">
+		<h1>Update Task</h1>
+		<form action="{% url 'update' todo_id %}" method="POST">
+			{% csrf_token %}
+			<label>
+				Time: <input type="time" name="time" value="{{ todo_time }}">
+			</label>
+			<label>
+				Title: <input type="text" name="title" value="{{ todo_title }}">
+			</label>
+			<button class="button primary-button m-t-3">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

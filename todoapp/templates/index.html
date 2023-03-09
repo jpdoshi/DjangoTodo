@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quadlite@1.0.0/quadlite.min.css">
+	<title>{{ title }}</title>
+</head>
+<body>
+	<div class="cont-s m-h-auto m-t-5">
+		<form action="/" method="post">
+			{% csrf_token %}
+			<h1 class="m-b-3">Add Task</h1>
+			<input type="text" name="title" class="m-b-2" placeholder="Your Task">
+			<input type="time" name="time" class="m-b-2">
+			<button class="button primary-button m-l-auto" type="submit">Submit</button>
+		</form>
+		<div class="table-wrapper"><table class="striped-rows">
+			<tr>
+				<th>Time</th>
+				<th>Task</th>
+				<th>Actions</th>
+			</tr>
+			{% for todo in todos %}
+			<tr>
+				<td>{{ todo.todo_time }}</td>
+				<td>{{ todo.todo_title }}</td>
+				<td>
+					<a href="{% url 'update' todo.todo_id %}"><button class="button button-s success-light-button">Edit</button></a>
+					<a href="{% url 'delete' todo.todo_id %}"><button class="button button-s danger-light-button">Delete</button></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table></div>
+	</div>
+</body>
+</html>
